@@ -2,7 +2,17 @@
  @url: https://www.geeksforgeeks.org/count-pairs-with-given-sum/
  @problem: Given an array of integers, and a number ‘sum’, find the number of pairs of integers in the array whose sum is equal to ‘sum’.
  Algorithm(arr, sum):
- 1.
+ 1. Initialize dictionary and result variables
+ 2. for each item in arr, add it to dictionary and increment by 1 or increment by previous_count + 1
+ 3. for each (key, value) pair in dictionary, do
+    1. if key not equal to (sum-key) and (sum-key) present in dictionary
+        1. Increment result by dictionary[key]*dictionary[sum-key]
+        2. Reset dictionary[key] to 0
+        3. Reset dictionary[sum-key] to 0
+    2. else if key equals to (sum-key) and (sum-key) present in dictionary
+        1. Increment result by dictionary[key]*(dictionary[key]-1)/2
+        2. Set dictionary[key] = 0
+ 4. return result
 """
 def get_pairs_count(arr, sum):
     dictionary, result = {}, 0
